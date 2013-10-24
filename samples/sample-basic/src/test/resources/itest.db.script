@@ -1,0 +1,13 @@
+--insert into Agent (id, description, key) values (1, 'Sensorarray X42', '5gd-d4d-gds-sfd')
+--insert into Agent (id, description, key) values (2, 'Sensorarray Y00', 'jgd-g2s-ecb-saj')
+--insert into Agent (id, description, key) values (3, 'Camera GH', 'm1b-vcg-xwa-26b')
+--insert into Agent (id, description, key) values (4, 'Camera GL', '35z-k9r-neh-tps')
+--insert into Agent (id, description, key) values (5, 'Camera GD', 'bwt-9cq-p9d-l3g')
+--insert into Agent (id, description, key) values (6, 'Orson Robot', 'sah-eew-7j3-2nn')
+--insert into Agent (id, description, key) values (7, 'Detector SSQ', 'lpo-g2s-ecb-saj')
+
+--insert into Event (id, description, eventTimestamp, key) values (1, 'Object arrived', '2010-01-03 10:00:00', 'oor-meg-bnv-34p')
+
+--insert into Event_Item (events_id, items_id) values (1, 5)
+--insert into Event_Item (events_id, items_id) values (1, 6)
+--insert into Event_Item (events_id, items_id) values (1, 7)

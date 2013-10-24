@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.evolutionaryarchitecture.jpa.samples.domain">
+
+    <class 
+    	name="Person" 
+    	table="PU_PERSONS">
+
+		<id name="id" column="PERSON_ID">
+			<generator class="native" />
+		</id>
+		<property name="lastUpdated" />
+		
+		<component name="name" class="Name" lazy="false">
+			<property name="firstName" />
+			<property name="lastName" />
+			<property name="namePrefix" />
+			<property name="nameSuffix" />
+		</component>
+
+		<set name="addresses" lazy="false" table="PU_ADDRESSES">
+			<key column="PERSON_ID" />
+			<composite-element class="Address">
+				<property name="street" />
+				<property name="city" />
+				<property name="postalCode" />
+				<property name="country" />
+			</composite-element>
+		</set>
+		
+        <set name="events" table="PU_PERSON_EVENT" inverse="true">
+            <key column="PERSON_ID"/>
+            <many-to-many 
+            	column="EVENT_ID" 
+            	class="Event"            	
+            	/>
+        </set>
+        
+        <set name="emailAddresses" table="PU_PERSON_EMAIL_ADDR" lazy="false">
+            <key column="PERSON_ID"/>
+            <element type="string" column="EMAIL_ADDR"/>
+        </set>
+
+    </class>
+
+</hibernate-mapping>

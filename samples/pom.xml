@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.evolutionaryarchitecture.jpa.samples</groupId>
+	
+	<artifactId>samples</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0</version>
+	<name>samples</name>
+	
+	<modules>
+		<module>sample-associations</module>
+		<module>sample-basic</module>
+		<module>sample-springhibernate</module>
+		<module>sample-eventmanager</module>
+		<module>sample-querying</module>
+	</modules>
+	
+</project>

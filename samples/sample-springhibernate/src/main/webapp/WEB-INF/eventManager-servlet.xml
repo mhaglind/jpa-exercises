@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <context:component-scan base-package="net.evolutionaryarchitecture.captainslog.ui"/>
+
+<!-- 
+
+	<bean id="customEditorConfigurer"
+		class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry
+					key="com.haglind.springhibernate.service.User">
+					<bean
+						class="com.haglind.springhibernate.UserEditor" />
+				</entry>
+			</map>
+		</property>
+	</bean>	
+	  
+	<bean name="/index.htm" class="com.haglind.springhibernate.web.ListController">
+		<property name="eventManager" ref="eventManager"/>
+		<property name="viewName" value="index"/>
+	</bean>
+	<bean name="/info.htm" class="com.haglind.springhibernate.web.ListController">
+		<property name="eventManager" ref="eventManager"/>
+		<property name="viewName" value="info"/>
+	</bean>
+	<bean name="/person.htm" class="com.haglind.springhibernate.web.SelectPersonController">
+		<property name="eventManager" ref="eventManager"/>
+		<property name="viewName" value="select"/>
+	</bean>	
+	<bean name="/showPerson.htm" class="com.haglind.springhibernate.web.ShowPersonController">
+		<property name="eventManager" ref="eventManager"/>
+		<property name="viewName" value="showPerson"/>
+	</bean>		
+	<bean name="/form.htm" class="com.haglind.springhibernate.web.FormController">
+		<property name="formView" value="form"/>
+		<property name="successView" value="redirect:index.htm"/>
+		<property name="eventManager" ref="eventManager"/>
+		<property name="validators">
+			<bean id="eventValidator" 
+				class="com.haglind.springhibernate.validation.EventValidator"/>
+		</property>
+	</bean>
+	<bean name="/insert.htm" class="com.haglind.springhibernate.web.InsertFormController">
+		<property name="formView" value="formInsert"/>
+		<property name="successView" value="redirect:index.htm"/>
+		<property name="eventManager" ref="eventManager"/>
+	</bean>	
+-->
+
+	<!-- 
+	     ViewResolver
+	  -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- 
+	     MessageSource
+	  -->
+	<bean id="messageSource" 
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages"/>
+	</bean>
+	
+</beans>

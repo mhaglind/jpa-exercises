@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+	version="2.0">
+
+	<entity class="net.evolutionaryarchitecture.jpa.samples.Person">
+		<table name="T_PERSONS" />
+
+		<named-query name="findEventsByParticipantCountry">
+			<query>
+				select e from Event e 
+				join e.participants p 
+				join p.addresses a 
+				where a.country = :country
+			</query>
+			<hint name="org.hibernate.fetchSize" value="500" />
+			<hint name="org.hibernate.timeout" value="10" /> <!-- Timeout in seconds -->
+		</named-query>
+
+		<named-native-query name="findPersonsByCountry"
+			result-class="net.evolutionaryarchitecture.jpa.samples.Person">
+			<query>
+				SELECT P.*   /* Custom native query */
+				FROM T_PERSONS P
+				JOIN T_ADDRESS A ON A.PERSON_ID = P.PERSON_ID
+				WHERE
+					A.CNTRY = ?
+			</query>
+		</named-native-query>
+
+		<attributes>
+
+			<id name="id">
+				<column name="PERSON_ID" />
+				<generated-value />
+				<sequence-generator name="PERSON_SEQ" />
+			</id>
+
+			<basic name="age">
+				<column name="PERSON_AGE" />
+			</basic>
+
+			<basic name="createdWhen">
+				<column name="CREATED" />
+			</basic>
+
+			<!-- <basic name="groovy"></basic> -->
+
+			<element-collection name="addresses">
+				<column name="PERSON_ID" />
+				<collection-table name="T_ADDRESS">
+					<join-column name="PERSON_ID" />
+				</collection-table>
+			</element-collection>
+
+			<embedded name="name" />
+
+
+		</attributes>
+
+	</entity>
+
+	<entity class="net.evolutionaryarchitecture.jpa.samples.Conference">
+		<table name="T_CONFERENCES" />
+		<attributes>
+			<basic name="venue">
+				<column name="VENUE"></column>
+			</basic>
+			<one-to-many name="organizers">
+				<join-column name="ORGANIZER_FOR_CONFERENCE" />
+			</one-to-many>
+		</attributes>
+	</entity>
+
+	<entity class="net.evolutionaryarchitecture.jpa.samples.Course">
+		<table name="T_COURSES" />
+		<attributes>
+			<basic name="instructor">
+				<column name="INSTRUCTOR" />
+			</basic>
+		</attributes>
+	</entity>
+
+	<entity class="net.evolutionaryarchitecture.jpa.samples.OnsiteCourse">
+		<table name="T_ONSITE_COURSES" />
+		<attributes>
+			<many-to-one name="technicalContact">
+				<join-column name="TECHNICAL_CONTACT_PERSON_ID" />
+			</many-to-one>
+			<many-to-one name="billingContact">
+				<join-table name="T_ONSITE_BILLING_CONTACTS">
+					<join-column name="COURSE_ID" />
+					<inverse-join-column name="CONTACT_ID" />
+				</join-table>
+			</many-to-one>
+		</attributes>
+	</entity>
+
+	<entity class="net.evolutionaryarchitecture.jpa.samples.Event">
+		<table name="T_EVENTS" />
+		<attributes>
+			<id name="id">
+				<column name="EVENT_ID" />
+				<generated-value />
+				<sequence-generator name="EVENT_SEQ" />
+			</id>
+			<basic name="title">
+				<column name="EVENT_TITLE" unique="true" />
+			</basic>
+			<basic name="date">
+				<column name="EVENT_DATE" />
+				<temporal>DATE</temporal>
+			</basic>
+		</attributes>
+	</entity>
+
+	<embeddable class="net.evolutionaryarchitecture.jpa.samples.Name">
+		<attributes>
+			<basic name="firstName">
+				<column name="FIRST" />
+			</basic>
+			<basic name="lastName">
+				<column name="LAST" />
+			</basic>
+			<basic name="namePrefix">
+				<column name="PRE" />
+			</basic>
+			<basic name="nameSuffix">
+				<column name="SUF" />
+			</basic>
+		</attributes>
+	</embeddable>
+
+	<embeddable class="net.evolutionaryarchitecture.jpa.samples.Address">
+		<attributes>
+			<basic name="street">
+				<column name="STRT" />
+			</basic>
+			<basic name="city">
+				<column name="CITY" />
+			</basic>
+			<basic name="postalCode">
+				<column name="P_CODE" />
+			</basic>
+			<basic name="country">
+				<column name="CNTRY" />
+			</basic>
+		</attributes>
+	</embeddable>
+
+</entity-mappings>

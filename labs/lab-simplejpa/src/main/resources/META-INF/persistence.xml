@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="simplejpa">
+
+		<!-- TODO: This has been created for you. Read through and try to understand 
+			what the settings does and perhaps change a few to see what happens. -->
+
+		<properties>
+
+			<!-- Database connection settings -->
+			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
+			<property name="hibernate.connection.url"
+				value="jdbc:hsqldb:file:src/main/resources/db/coursedb;shutdown=true" />
+			<property name="hibernate.connection.username" value="sa" />
+			<property name="hibernate.connection.password" value="" />
+
+			<!-- JDBC connection pool (use the built-in) -->
+			<property name="hibernate.connection.pool_size" value="1" />
+
+			<!-- SQL dialect -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+
+			<!-- Enable Hibernate's automatic session context management -->
+			<property name="hibernate.current_session_context_class"
+				value="thread" />
+
+			<!-- Echo all executed SQL to stdout -->
+			<property name="hibernate.show_sql" value="true" />
+
+			<!-- Drop and re-create the database schema on startup -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+
+		</properties>
+
+	</persistence-unit>
+	
+</persistence>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.evolutionaryarchitecture.jpa.samples.domain">
+
+	<class name="Event" table="PU_EVENTS"
+		lazy="false">
+
+		<id name="id" column="EVENT_ID">
+			<generator class="native" />
+		</id>
+		
+        <property name="date" type="timestamp" column="EVENT_DATE"/>
+        <property name="title"/>
+        <property name="notes"/>
+        
+        <many-to-one name="country" lazy="false"/>
+        
+		<set name="participants" table="PU_PERSON_EVENT" lazy="true">
+			<key column="EVENT_ID" />
+			<many-to-many column="PERSON_ID"
+				class="Person" />
+		</set>
+
+        <set name="subjects" table="EVENT_SUBJECTS" lazy="false">
+            <key column="EVENT_ID"/>
+            <element type="string" column="SUBJECT"/>
+        </set>
+        
+		<joined-subclass name="Conference" table="PU_CONFERENCES">
+			<key column="EVENT_ID" />
+			<property name="venue" />
+		</joined-subclass>
+
+		<joined-subclass name="Course" table="PU_COURSES">
+			<key column="EVENT_ID" />
+			<property name="instructor" />
+			<joined-subclass name="OnsiteCourse" table="PU_ONSITES">
+				<key column="EVENT_ID" />
+				<property name="companyName" />
+				<many-to-one name="contact" class="Person"/>
+			</joined-subclass>
+			<joined-subclass name="PublicCourse"  table="PU_PUBLIC_COURSES">
+				<key column="EVENT_ID" />
+				<property name="classRoom" />
+			</joined-subclass>
+		</joined-subclass>
+
+	</class>
+
+</hibernate-mapping>
