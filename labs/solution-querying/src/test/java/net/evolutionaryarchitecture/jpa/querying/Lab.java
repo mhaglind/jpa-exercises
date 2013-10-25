@@ -39,26 +39,36 @@ public class Lab {
 		// All Persons with a lastname of 'Karlsson'
 		Assert.assertEquals(
 				1,
-				executeJpaQuery("from Person p where p.name.lastName = 'Karlsson'"));
+				executeJpaQuery("from Person p "
+						+ "where p.name.lastName = 'Karlsson'"));
 
 		// All Persons that are attending the conference 'JavaOne'
 		Assert.assertEquals(
 				1,
-				executeJpaQuery("select p from Person p join p.eventsRegisteredFor e where e.title = 'JavaOne' and e.class=Conference"));
+				executeJpaQuery("select p "
+						+ "from Person p "
+						+ "join p.eventsRegisteredFor e "
+						+ "where e.title = 'JavaOne' and e.class=Conference"));
 
 		// All OnsiteCourses in February
 		Assert.assertEquals(
 				1,
-				executeJpaQuery("from OnsiteCourse c where c.date between '2011-02-01' and '2011-02-28'"));
+				executeJpaQuery("from OnsiteCourse c "
+						+ "where c.date between '2011-02-01' and '2011-02-28'"));
 
 		// All Events containing the word 'Spring' in the title
 		Assert.assertEquals(2,
-				executeJpaQuery("from Event e where e.title like '%Spring%'"));
+				executeJpaQuery("from Event e "
+						+ "where e.title like '%Spring%'"));
 
 		// All Events attended by persons that lives in Sweden
 		Assert.assertEquals(
 				3,
-				executeJpaQuery("select e from Event e join e.participants p join p.addresses a where a.country = 'Sverige'"));
+				executeJpaQuery("select e "
+						+ "from Event e "
+						+ "join e.participants p "
+						+ "join p.addresses a "
+						+ "where a.country = 'Sverige'"));
 
 	}
 
