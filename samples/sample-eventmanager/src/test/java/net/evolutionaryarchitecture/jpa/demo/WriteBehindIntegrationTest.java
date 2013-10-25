@@ -46,6 +46,8 @@ public class WriteBehindIntegrationTest {
 
         tx.commit();
         entityManager.close();
+        
+
     }
 
     @Test
@@ -58,7 +60,6 @@ public class WriteBehindIntegrationTest {
 
         Agent agent = (Agent) entityManager.find(Agent.class, agentId);
         agent.setDescription("A");
-        entityManager.flush();
         printAgent("after setting A");
 
         agent.setDescription("B");

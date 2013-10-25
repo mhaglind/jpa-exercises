@@ -73,17 +73,11 @@ public class OptimisticLockingIntegrationTest {
         EntityTransaction txB = entityManagerB.getTransaction();
         txB.begin();
 
-        // Session sessionA = sessionFactory.openSession();
-        // Transaction txA = sessionA.beginTransaction();
-        //
-        // Session sessionB = sessionFactory.openSession();
-        // Transaction txB = sessionB.beginTransaction();
-
-        Event eventA = (Event) entityManagerA.find(Event.class, eventId);
-        eventA.setDescription("Session A sets description");
-
         Event eventB = (Event) entityManagerB.find(Event.class, eventId);
         eventB.setDescription("Session B sets description");
+        
+        Event eventA = (Event) entityManagerA.find(Event.class, eventId);
+        eventA.setDescription("Session A sets description");
 
         txA.commit();
         entityManagerA.close();
@@ -122,10 +116,6 @@ public class OptimisticLockingIntegrationTest {
                     .getClass());
             System.out.println(ex.getMessage());
         }
-        
-//        entityManagerB.refresh(agentB);
-//        agentB.setDescription("Session B sets description");
-//        txB.commit();
         
         entityManagerB.close();
 
