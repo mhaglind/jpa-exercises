@@ -31,31 +31,28 @@ public class Lab {
         // TODO:
         // Inspect the TestDataHelper - it creates some test data to work with.
         LabDataHelper.createDefaultDataSet(eventRepo);
-
         Assert.assertEquals(7, executeJpaQlQuery("from Event"));
 
         // TODO:
         // Replace XXX below with the queries described
 
         // Get all Courses sorted by date
-        Assert.assertEquals(4, executeJpaQlQuery("from Course c order by c.date"));
+        Assert.assertEquals(4, executeJpaQlQuery("XXX"));
 
         // All Persons with a lastname of 'Karlsson'
-        Assert.assertEquals(1, executeJpaQlQuery("from Person p where p.name.lastName like 'Karlsson'"));
+        Assert.assertEquals(1, executeJpaQlQuery("XXX"));
 
         // All Persons that are attending the conference 'JavaOne'
-        Assert.assertEquals(1, executeJpaQlQuery("select p from Person p join p.eventsRegisteredFor c" +
-        		" where " +
-        		"c.title='JavaOne'"));
+        Assert.assertEquals(1, executeJpaQlQuery("XXX"));
 
         // All OnsiteCourses in February
-//        Assert.assertEquals(1, executeJpaQlQuery("XXX"));
+        Assert.assertEquals(1, executeJpaQlQuery("XXX"));
 
         // All Events containing the word 'Spring' in the title
-//        Assert.assertEquals(2, executeJpaQlQuery("XXX"));
+        Assert.assertEquals(2, executeJpaQlQuery("XXX"));
 
         // All Events attended by persons that lives in Sweden
-//        Assert.assertEquals(3, executeJpaQlQuery("XXX"));
+        Assert.assertEquals(3, executeJpaQlQuery("XXX"));
 
     }
 
